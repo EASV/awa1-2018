@@ -1,44 +1,57 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="http://www.codebug.org.uk/assets/steps/540/image_1.png">
-</div>
-<ul>
-  <h2>Number of messages: {{messages?.length}}</h2>
-  <div *ngIf="latest">
-    <h4>Latest Message:</h4>
-    <h3>{{latest.time}}</h3>
-    <h1>{{latest.message.toString()}}</h1>  <h2 style="color: darkblue"> {{this.convertToText(latest.message)}} </h2>
+<div *ngIf="!messages">Loading...</div>
+<div *ngIf="messages">
+  <div style="text-align:center">
+    <h1>
+      Welcome to {{ title }}!
+    </h1>
   </div>
-</ul>
-<hr>
-<div>
-  <button class="button1" (mousedown)="morse(true);"
-          (mouseup)="morse(false);" ><h2>Morse</h2></button>
-    <button class="button2" (click)="next();"><h2>Next</h2></button>
-    <button class="button2" (click)="space();"><h2>Space</h2></button>
-    <button class="button2" (click)="clear();"><h2>Clear</h2></button>
+  <div class="row">
+    <div class="column">
+      <h2>{{messages?.length}} latest messages shown</h2>
+      <h4 *ngFor="let message of messages">{{message.time}} - {{convertMessage(message.message)}}</h4>
+    </div>
+    <div class="column">
+      <img alt="Angular Logo" src="http://www.codebug.org.uk/assets/steps/540/image_1.png">
+    </div>
+
+  </div>
+  <ul>
+    <div *ngIf="latest">
+      <h3>Latest Message Information:</h3>
+      <h3>Time: {{latest.time}}</h3>
+      <h3>Morse: {{latest.message.toString()}}</h3>
+      <h3 style="color: darkblue">Message: {{convertMessage(latest.message)}} </h3>
+    </div>
+  </ul>
+  <hr>
+  <hr>
+  <hr>
+  <div>
+    <button class="button1" (mousedown)="morse(true);"
+            (mouseup)="morse(false);" ><h2>Morse</h2></button>
+      <button class="button2" (click)="next();"><h2>Next</h2></button>
+      <button class="button2" (click)="space();"><h2>Space</h2></button>
+      <button class="button2" (click)="clear();"><h2>Clear</h2></button>
+
+  </div>
+
+  <div>
+    Human readable message to send:
+    <div *ngIf="message">
+      <h1>{{message}}</h1>  <h2 style="color: darkblue"> {{convertMessage(humanReadableMessage)}} </h2>
+    </div>
+    <div *ngIf="!message">
+      <h4 style="color: darkred">No message yet!</h4>
+    </div>
+    <button [disabled]="!message" class="button3" (click)="send()"><h1>Send Message</h1></button>
+    <h4 style="color: darkblue"> click "morse" button in less then a 120 ms for . and longer for - </h4>
+    <h4 style="color: darkblue"> click "next" to go to next letter</h4>
+    <h4 style="color: darkblue"> click "space" to go to next word</h4>
+    <h4 style="color: darkblue"> click "clear" to remove all</h4>
+    <h4 style="color: darkblue"> click "send" to broadcast message</h4>
+
 
 </div>
-
-<div>
-  Human readable message to send:
-  <div *ngIf="message">
-    <h1>{{message}}</h1>  <h2 style="color: darkblue"> {{this.convertToText(humanReadableMessage)}} </h2>
-  </div>
-  <div *ngIf="!message">
-    <h4 style="color: darkred">No message yet!</h4>
-  </div>
-  <button [disabled]="!message" class="button3" (click)="send()"><h1>Send Message</h1></button>
-  <h4 style="color: darkblue"> click "morse" button in less then a 120 ms for . and longer for - </h4>
-  <h4 style="color: darkblue"> click "next" to go to next letter</h4>
-  <h4 style="color: darkblue"> click "space" to go to next word</h4>
-  <h4 style="color: darkblue"> click "clear" to remove all</h4>
-  <h4 style="color: darkblue"> click "send" to broadcast message</h4>
-
-
 </div>
-
 

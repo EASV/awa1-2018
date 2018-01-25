@@ -8,7 +8,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { MomentModule } from 'angular2-moment';
-import {MessageService} from './message/message.service';
+import {MessageService} from './message/shared/message.service';
 
 @NgModule({
   declarations: [
